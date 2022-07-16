@@ -16,9 +16,7 @@ class ROICalc():
         self.cash = cashFlow
 
     def rentIncome(self): # rental income - $2000/mon | total monthly income = $2k/mon
-        income = float(input("enter your monthly rent: "))
-        self.inc = income
-        return self.inc # we want the income to be whatever the inputted income is
+        self.inc = float(input("enter your monthly rent: "))
 
     def expenses(self): # cost of owning the property
         # tax ($150/mon), insurance ($100), utilities ($0) (electric, hydro, garbo, gas, sewer), HOA ($0), lawn/snow care ($0), vacancy ($100), repairs ($100)
@@ -28,7 +26,6 @@ class ROICalc():
         
 
         tax = float(input("Please enter your taxes: "))
-
 
         insurance = input("Do you have insurance payments? (Yes/No) ")
         if insurance.lower() == 'yes':
@@ -74,16 +71,11 @@ class ROICalc():
 
         mortgage = float(input("enter your mortgage fees: "))
 
-
-        total_exp = tax + insurance + utilities + hoa + vacancy + repairs + capex + propman + mortgage
-        self.exp = total_exp
-        return self.exp
+        self.exp = tax + insurance + utilities + hoa + vacancy + repairs + capex + propman + mortgage
 
     def cashFlow(self):
         # income - expenses (2000 - 1610 = 390) total monthly cash flow = 390
-        cashFlow = self.inc - self.exp
-        self.cash = cashFlow
-        return self.cash
+        self.cash = self.inc - self.exp
 
     def cashOnCashROI(self):
         # what return on your cash flow are you getting (how much money you put in and how much you get back)
