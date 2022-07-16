@@ -3,6 +3,7 @@
 # four square method
 
 # i am very lost.
+# break the code down into pieces - start off with the very basics/tackle each part one at a time, don't try to do everything all at once (yet)
 
 # Here we assume that we have a client coming to us asking for an automated Rental Property Calculator. 
 # Our client's name is Brandon from a company called "Bigger Pockets". Below, you will find a video of what Brandon usually does to calculate his Rental Property ROI.
@@ -24,15 +25,56 @@ class ROICalc():
         # capital expenditures (saving up for big things like a new roof/water heater/big items) - price will depend on quality (if/else) ($100/mon)
         # property management ($200/mon), and mortgage ($160000 @ 5% int = $860/mon) = total monthly expenses: $1610
         # might need to break these up into different methods or functions
+        
+
         tax = float(input("Please enter your taxes: "))
-        insurance = float(input("enter your insurance amount: "))
-        utilities = float(input("enter utilities cost: "))
-        hoa = float(input("enter hoa fees: "))
-        vacancy = float(input("enter your vacancy fees: "))
-        repairs = float(input("enter your repairs fees: "))
-        capex = float(input("enter your capex fees: "))
-        propman = float(input("enter your propman fees: "))
+
+
+        insurance = input("Do you have insurance payments? (Yes/No) ")
+        if insurance.lower() == 'yes':
+            insurance = float(input("enter your insurance amount: "))
+        else:
+            insurance = float(0)
+
+        utilities = input("Do you have utility fees to pay? (Yes/No) ")
+        if utilities.lower() == 'yes':
+            utilities = float(input("enter utilities cost: "))
+        else:
+            utilities = float(0)
+
+        hoa = input("Do you have hoa fees to pay? (Yes/No) ")
+        if hoa.lower() == 'yes':
+            hoa = float(input("enter hoa fees: "))
+        else:
+            hoa = float(0)
+
+        vacancy = input("Do you have vacancy fees to pay? (Yes/No) ")
+        if vacancy.lower() == 'yes':
+            vacancy = float(input("enter your vacancy fees: "))
+        else:
+            vacancy = float(0)
+
+        repairs = input("Do you have repair fees to pay? (Yes/No) ")
+        if repairs.lower() == 'yes':
+            repairs = float(input("enter your repairs fees: "))
+        else:
+            repairs = float(0)
+
+        capex = input("Do you have capex fees to pay? (Yes/No) ")
+        if capex.lower() == 'yes':
+            capex = float(input("enter your capex fees: "))
+        else:
+            capex = float(0)
+
+        propman = input("Do you have property management fees to pay? (Yes/No) ")
+        if propman.lower() == 'yes':
+            propman = float(input("enter your propman fees: "))
+        else:
+            propman = float(0)
+
         mortgage = float(input("enter your mortgage fees: "))
+
+
         total_exp = tax + insurance + utilities + hoa + vacancy + repairs + capex + propman + mortgage
         self.exp = total_exp
         return self.exp
@@ -50,8 +92,19 @@ class ROICalc():
         # cash on cash ROI is 9.36%
         downPay = float(input("Enter your down payment: "))
         closeCost = float(input("Enter your closing costs: "))
-        rehab = float(input("Enter your rehab budget: "))
-        miscExp = float(input("Enter any additional expenses you have: "))
+
+        rehab = input("Do you have a rehab budget? (yes/no) ")
+        if rehab.lower() == 'yes':
+            rehab = float(input("Enter your rehab budget: "))
+        else:
+            rehab = float(0)
+
+        miscExp = input("Do you have any other miscellaneous expenses? (Yes/No) ")
+        if miscExp.lower() == 'yes':
+            miscExp = float(input("Enter any additional expenses you have: "))
+        else:
+            miscExp = float(0)
+
         totalInvest = downPay + closeCost + rehab + miscExp
         ROI = (self.cash / totalInvest) * 100
         return ROI
@@ -60,6 +113,7 @@ class ROICalc():
 # test = ROICalc()
 # print(test)
 
+# to run the program
 def run():
     property = ROICalc()
     property.rentIncome()
