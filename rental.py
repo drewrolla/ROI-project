@@ -8,6 +8,21 @@
 # Here we assume that we have a client coming to us asking for an automated Rental Property Calculator. 
 # Our client's name is Brandon from a company called "Bigger Pockets". Below, you will find a video of what Brandon usually does to calculate his Rental Property ROI.
 
+
+# cost of owning the property
+        # tax ($150/mon), insurance ($100), utilities ($0) (electric, hydro, garbo, gas, sewer), HOA ($0), lawn/snow care ($0), vacancy ($100), repairs ($100)
+        # capital expenditures (saving up for big things like a new roof/water heater/big items) - price will depend on quality (if/else) ($100/mon)
+        # property management ($200/mon), and mortgage ($160000 @ 5% int = $860/mon) = total monthly expenses: $1610
+        # might need to break these up into different methods or functions
+
+# what return on your cash flow are you getting (how much money you put in and how much you get back)
+        # add up all money you put in (down payment ($40000), closing costs ($3000), rehab budget ($7000), misc ($0)) to get total investment ($50000)
+        # figure out cashOnCashROI, take annual cash flow (monthly cashflow by 12 = 390 x 12 = 4680) and divide by total investment (4680/50000 = 9.36% (to make a percentage multiply this by 100))
+
+# how to call the classes and methods properly:
+# test = ROICalc()
+# print(test)
+
 class ROICalc():
 
     def __init__(self, income=0, expenses=0, cashFlow=0): #anything called in this class is available everywhere else - in this case: income and expenses
@@ -15,15 +30,10 @@ class ROICalc():
         self.exp = expenses
         self.cash = cashFlow
 
-    def rentIncome(self): # rental income - $2000/mon | total monthly income = $2k/mon
+    def rentIncome(self):
         self.inc = float(input("enter your monthly rent: "))
 
-    def expenses(self): # cost of owning the property
-        # tax ($150/mon), insurance ($100), utilities ($0) (electric, hydro, garbo, gas, sewer), HOA ($0), lawn/snow care ($0), vacancy ($100), repairs ($100)
-        # capital expenditures (saving up for big things like a new roof/water heater/big items) - price will depend on quality (if/else) ($100/mon)
-        # property management ($200/mon), and mortgage ($160000 @ 5% int = $860/mon) = total monthly expenses: $1610
-        # might need to break these up into different methods or functions
-        
+    def expenses(self): 
 
         tax = float(input("Please enter your taxes: "))
 
@@ -74,14 +84,9 @@ class ROICalc():
         self.exp = tax + insurance + utilities + hoa + vacancy + repairs + capex + propman + mortgage
 
     def cashFlow(self):
-        # income - expenses (2000 - 1610 = 390) total monthly cash flow = 390
         self.cash = self.inc - self.exp
 
     def cashOnCashROI(self):
-        # what return on your cash flow are you getting (how much money you put in and how much you get back)
-        # add up all money you put in (down payment ($40000), closing costs ($3000), rehab budget ($7000), misc ($0)) to get total investment ($50000)
-        # figure out cashOnCashROI, take annual cash flow (monthly cashflow by 12 = 390 x 12 = 4680) and divide by total investment (4680/50000 = 9.36% (to make a percentage multiply this by 100))
-        # cash on cash ROI is 9.36%
         downPay = float(input("Enter your down payment: "))
         closeCost = float(input("Enter your closing costs: "))
 
@@ -98,12 +103,8 @@ class ROICalc():
             miscExp = float(0)
 
         totalInvest = downPay + closeCost + rehab + miscExp
-        ROI = (self.cash / totalInvest) * 100
+        ROI = (self.cash*12 / totalInvest) * 100 # completely forgot to multiply self.cash * 12 in the first couple commits
         return ROI
-
-# how to call the classes and methods properly:
-# test = ROICalc()
-# print(test)
 
 # to run the program
 def run():
